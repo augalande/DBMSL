@@ -1,0 +1,18 @@
+// Simple Index
+db.student.createIndex({name:1})
+
+// Complex Index
+db.student.createIndex({
+    name:1,
+    age:1
+})
+
+// Unique Index
+db.student.createIndex({
+    name:1,
+    branch:1,
+    age:1
+},
+{
+    unique:true
+})

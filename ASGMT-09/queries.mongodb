@@ -1,0 +1,127 @@
+//Create Database
+use asgmt09;
+
+//Create Collection
+db.createCollection("student")
+
+//Insert One
+db.student.insertOne({
+name:"Aryan",
+age:20,
+branch:"CE",
+insem_marks:26,
+endsem_marks:56
+})
+
+//Insert Many
+db.student.insertMany([
+    {
+        name:"Shubham",
+        age:21,
+        branch:"CE",
+        insem_marks:25,
+        endsem_marks:62
+    },
+    {
+        name:"Swaraj",
+        age:19,
+        branch:"CE",
+        insem_marks:23,
+        endsem_marks:65
+    },
+    {
+        name:"Advait",
+        age:20,
+        branch:"IT",
+        insem_marks:19,
+        endsem_marks:50
+    },
+    {
+        name:"Niraj",
+        age:17,
+        branch:"ENTC",
+        insem_marks:19,
+        endsem_marks:47
+    }
+])
+
+//Find
+db.student.find().pretty()
+
+//Find+Object
+db.student.find({branch:"CE"}).pretty()
+
+//Find+Object+Logical Operators(AND)
+db.student.find({
+    $and:[
+        {branch:"CE"},
+        {endsem_marks:62}
+    ]
+}).pretty()
+
+//Find+Object+Logical Operators(AND)+Comparison Operators
+db.student.find({
+    $and:[
+        {branch:"CE"},
+        {endsem_marks:{$gt:60}}
+    ]
+}).pretty()
+
+//Find+Object+Logical Operators(OR)
+db.student.find({
+    $or:[
+        {branch:"CE"},
+        {branch:"IT"}
+    ]
+}).pretty()
+
+//Find+Object+Logical Operators(NOR)
+db.student.find({
+    $nor:[
+        {branch:"CE"},
+        {branch:"IT"}
+    ]
+}).pretty()
+
+//Find+Object+Logical Operators(NOT)
+db.student.find(
+    {
+        insem_marks:{$not:{$gt:20}}
+    }
+)
+
+//Update One
+db.student.updateOne(
+    {
+        name:"Shubham"
+    },
+    {
+        $set:{insem_marks:27}
+    }
+)
+
+//Update Many
+db.student.updateMany(
+    {
+        branch:"CE"
+    },
+    {
+        $set:{insem_marks:30}
+    }
+)
+
+//Delete One
+db.student.deleteOne(
+    {
+        name:"Shubham"
+    }
+)
+
+//Delete Many
+db.student.deleteMany(
+    {
+        branch:"CE"
+    }
+)
+
+

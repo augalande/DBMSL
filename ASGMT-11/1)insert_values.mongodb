@@ -1,0 +1,52 @@
+use asgmt10
+
+db.createCollection("student")
+
+db.student.insertOne(
+    {
+        name:"Aryan",
+        age:20,
+        branch:"CE",
+        insem_marks:27,
+        endsem_marks:55
+    }
+)
+
+db.student.insertMany([
+    {
+        name:"Shubham",
+        age:21,
+        branch:"IT",
+        insem_marks:25,
+        endsem_marks:65
+
+    },
+    {
+        name:"Advait",
+        age:19,
+        branch:"CE",
+        insem_marks:20,
+        endsem_marks:50
+    },
+    {
+        name:"Ajit",
+        age:22,
+        branch:"IT",
+        insem_marks:24,
+        endsem_marks:61
+    },
+    {
+        name:"Anup",
+        age:21,
+        branch:"ENTC",
+        insem_marks:23,
+        endsem_marks:58
+    },
+    {
+        name:"Niraj",
+        age:21,
+        branch:"ENTC",
+        insem_marks:26,
+        endsem_marks:64
+    }
+])

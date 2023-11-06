@@ -1,0 +1,69 @@
+//Find the average insem_marks and endsem_marks of all Branches
+db.student.aggregate([{
+    $group:{
+        _id:null,
+        avg_insem_marks:{$avg:"$insem_marks"},
+        avg_endsem_marks:{$avg:"$endsem_marks"}
+    }
+}])
+
+//Find the average insem_marks and endsem_marks Branchwise
+db.student.aggregate([{
+    $group:{
+        _id:"$branch",
+        avg_insem_marks:{$avg:"$insem_marks"},
+        avg_endsem_marks:{$avg:"$endsem_marks"}
+    }
+}])
+
+//Find the Number of Students Branchwise
+db.student.aggregate([{
+    $group:{
+        _id:"$branch",
+        count_of_students:{$count:{}}
+    }
+}])
+
+//Find the total marks(insem+endsem) obtained by Students of branch "CE" studentwise
+db.student.aggregate([{
+    $match:{
+        branch:"CE"
+    },
+},
+{
+    $group:{
+        _id:{
+            name:"$name",
+            age:"$age",
+            branch:"$branch"
+        },
+        total_marks:{$sum:{$add:["$insem_marks","$endsem_marks"]}}
+    }
+}])
+
+//Topper of "CE" Branch
+db.student.aggregate([
+    {
+        $match:{
+            branch:"CE"
+        },
+    },
+    {
+        $group:{
+            _id:{
+                name:"$name",
+                age:"$age",
+                branch:"$branch"
+            },
+            total_marks:{$sum:{$add:["$insem_marks","$endsem_marks"]}}
+        }
+    },
+    {
+        $sort:{total_marks:-1}
+    },
+    {
+        $limit:1
+    }
+])
+
+

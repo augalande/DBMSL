@@ -1,0 +1,23 @@
+db.student.mapReduce(
+    function(){emit(this.branch,1)},
+    function(key,value){ return Array.sum(value)},
+    {
+        out:"students_in_each_branch"
+    }
+)
+
+db.student.mapReduce(
+    function(){emit(this.branch,this.insem_marks)},
+    function(key,value){ return Array.sum(value)},
+    {
+        out:"sum_of_insem_marks_branchwise"
+    }
+)
+
+db.student.mapReduce(
+    function(){emit(this.branch,this.insem_marks)},
+    function(key,value){ return Array.avg(value)},
+    {
+        out:"avg_of_insem_marks_branchwise"
+    }
+)

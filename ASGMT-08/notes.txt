@@ -1,0 +1,21 @@
+Create Java Project :-
+>New Java Project
+>New File (filename.java)
+
+Adding Jar File to Class Path:-
+>Right Click file.java
+>Build Path
+>Configure Build Path
+>Libraries
+>Select Class Path
+>Add External Jar
+>Select Jar file to be linked
+>Apply and Close
+
+Run Java Program:-
+>Make sure the server is on
+>Check it hostname,username,password
+>Go to Run Configuration
+>Select version of JDK
+>Apply
+>Run
